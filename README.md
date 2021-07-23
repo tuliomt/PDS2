@@ -14,10 +14,10 @@
 * Informações sobre animais de estimação e produtos vendidos a um cliente.
 
 #### Tecnologias: :rocket:
-HTML 
-CSS 
-PHP 
-MYSQL
-JAVASCRIPT
-BOOTSTRAP
+* HTML 
+* CSS 
+* PHP 
+* MYSQL
+* JAVASCRIPT
+* BOOTSTRAP
 
