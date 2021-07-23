@@ -1,4 +1,4 @@
-### Repositório usado para armazenar códigos e tarefas de PDS2.
+### Repositório usado para armazenar códigos e tarefas de PDS2. :computer:
 #### Membros:
 ##### Franciele Cristina
 ##### Tulio Araujo 
