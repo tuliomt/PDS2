@@ -1,43 +1,19 @@
-<?php require_once 'funcoes.php'; 
-
-verificaPermissao();
-
-if(isset($_GET['sair'])) {
-	if($_GET['sair'] == true){
-		session_destroy();
-		redireciona('index.php');
-	}
-}
-?>
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt_BR">
 <head>
-	<meta charset="utf-8">
-	<title>Pet Shop</title>
-		<link rel="stylesheet" type="text/css" href="../CSS\bootstrap.css"> 
-		 
+	<title></title>
+	<meta charset="UTF8"/>
+	<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
 	
 	<script type="text/javascript" src="../JS/jquery.js"></script>
 	<script src="../JS/bootstrap.js"></script>
-
 </head>
-
 <body>
-		
-		  <div class="topnav">
-            <a>Pet Shop Cinco Estrelas</a>
-            <div class="topnav-right">
-			  <li><a href="?sair=true">Sair</a></li>
-            </div>
-          </div>
-	
+	<div class="navbar navbar-default" role="navigation">
+	    <div class="container">
+			<div class="navbar-collapse collapse">
 
-	<div class="screen">
-		 
-	<div class="navbar-collapse collapse">
-
-				    <ul class="nav navbar-nav navbar-left">
+			     <ul class="nav navbar-nav navbar-left">
 						<li class="active"><a href="home.php">Home</a></li>
 						<li class="dropdown ">
 						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
@@ -91,8 +67,50 @@ if(isset($_GET['sair'])) {
 						</li>
 						
 				    </ul>
-				</div>
-	</div>	
+
+			</div><!--/.nav-collapse -->
+	    </div>
+	</div>
+<div class="container">
+	<div class="row">
+		<div class="panel-group" id="accordion">
+		  	<div class="panel panel-default">
+		        <div class="panel-heading">
+		          <h4 class="panel-title">
+		            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Busca</a>
+		          </h4>
+		        </div>
+		        <div id="collapseOne" class="panel-collapse collapse in">
+		          <div class="panel-body">
+		            
+		            <form class="form-inline" method="POST" action="">
+						<fieldset>
+							<div class="form-group">
+						    	<input type="number" class="form-control" name="ibcpf" placeholder="CPF do Funcionario">
+						    </div>
+						    <div class="form-group">
+						        <input type="text" class="form-control" name="ibnome" placeholder="Nome do Funcionario">
+						    </div>
+						    <div class="form-group">
+						        <input type="text" class="form-control" name="ibemail" placeholder="Email do Funcionario">
+						    </div>
+						    <div class="form-group">
+						            <button type="submit" class="btn btn-primary" name="btnPesq">
+						            	<i class="glyphicon glyphicon-search"> Pesquisar </i>
+						            </button>
+						    </div>
+					    </fieldset>
+					</form>
+		          </div>
+		        </div>
+		  	</div>
+		</div>
+	
+
+		
+
+	</div>
+</div>
 
 
 

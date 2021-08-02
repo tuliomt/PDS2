@@ -8,11 +8,32 @@
 	<link rel="stylesheet" type="text/css" href="../CSS/index.css">
 	<script type="text/javascript" src="../JS/jquery.js"></script>
 	<script src="../JS/bootstrap.js"></script>
+
+	<script>
+		$(document).on('submit', 'form', function(event) {
+			event.preventDefault(); //Parando o submit para manusear os dados e fazer a requisição por ajax
+			let formJSON = $(this).serializeArray(); //Transformando form em json [{ name: iemail, value: teste@teste.com }, ...]
+			
+			$.post('./login.php', formJSON, function(response) {
+				let data = JSON.parse(response);
+				
+				if(data.status == 'error') {
+					$('.alert').text(data.mensagem).fadeIn(100).fadeOut(5000);
+				}
+				else {
+					window.location = './home.php';
+				}
+			});
+		});
+	</script>
+	
 </head>
 
 <body>
   <div class="screen">  
-  <div class="container">
+
+
+<div class="container">
 	<form class="form-signin" method="POST">
 		<div class="col-lg-4 text-center"></div>
 		
@@ -29,7 +50,7 @@
 			<label class="checkbox">
 			<button class="btn btn-lg btn-primary btn-block">Acessar</button>
 			
-			
+			<div class="alert alert-danger mt-2" role="alert" style="display: none; margin-top: 10px;"></div>
     		</form>
   			</div>
 			</div>
@@ -37,7 +58,7 @@
 
 		</div>
 
-	 	
+	 	<div class="col-lg-4 text-center"></div>
 	</form>
 	</div>
 </div>
