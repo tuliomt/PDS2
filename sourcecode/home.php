@@ -14,7 +14,7 @@ if(isset($_GET['sair'])) {
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8">
-	<title>Pet Shop</title>
+	<title>Pet Shop Cinco Estrelas</title>
 		<link rel="stylesheet" type="text/css" href="../CSS\bootstrap.css"> 
 		 
 	
@@ -45,7 +45,7 @@ if(isset($_GET['sair'])) {
 						    </ul>
 						</li>			
 						<li class="dropdown ">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
+						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
 						    <ul class="dropdown-menu">
 
 							<li class="divider"></li>
@@ -84,10 +84,7 @@ if(isset($_GET['sair'])) {
 						    </ul>
 						</li>
 
-							<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
+							
 						</li>
 						
 				    </ul>

@@ -1,3 +1,14 @@
+<?php include_once 'funcoes.php'; 
+
+verificaPermissao();
+
+if(isset($_GET['sair'])) {
+	if($_GET['sair'] == true){
+		session_destroy();
+		redireciona('index.php');
+	}
+}
+?>
 <!DOCTYPE html>
 <html lang="pt_BR">
 <head>
@@ -13,7 +24,7 @@
 	    <div class="container">
 			<div class="navbar-collapse collapse">
 
-			     <ul class="nav navbar-nav navbar-left">
+			    <ul class="nav navbar-nav navbar-left">
 						<li class="active"><a href="home.php">Home</a></li>
 						<li class="dropdown ">
 						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
@@ -40,13 +51,15 @@
 						    </ul>
 						</li>
 
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
-							<li><a href="conFuncionario.php">Consultar</a></li>
-						    </ul>
-						</li>
+						<li class="dropdown active">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionario<b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+						<li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
+						<li><a href="conFuncionario.php">Consultar</a></li>
+
+						<li class="divider"></li>
+					    </ul>
+					</li>
 
 						<li class="dropdown">
 						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
@@ -60,11 +73,7 @@
 						    </ul>
 						</li>
 
-							<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
-						</li>
+							
 						
 				    </ul>
 
@@ -105,13 +114,82 @@
 		        </div>
 		  	</div>
 		</div>
-	
+	<table cellpadding="0" cellspacing="0" class="table">
+		<thead>
+			<th>Codigo</th>
+			<th>Nome</th>
+			<th>CPF</th>
+			<th>Telefone</th>
+			<th>Email</th>
+			<th>Status</th>
+			<th>Ações</th>
+		</thead>
+		<tbody>
+				<?php 
+				$link = conectar();
+				$condicao = "";
+				if(isset($_POST['btnPesq'])){
+					if($_POST['ibcpf'] != NULL || $_POST['ibnome'] != NULL || $_POST['ibemail'] != NULL){
+						$condicao = " WHERE ";
+						$and = null;
+						if($_POST['ibcpf'] != NULL){
+							$condicao .= " cpf = ". $_POST['ibcpf'];
+							$and = true;
+						}
+						if($_POST['ibnome'] != NULL){
+							if($and){
+								$condicao .= " AND nome LIKE '%". $_POST['ibnome']. "%'";
+							}else{
+								$condicao .= " nome LIKE '%". $_POST['ibnome']. "%'";
+								$and = true;
+							}
+						}
+
+						if($_POST['ibemail']!= NULL){
+							if($and){
+								$condicao .= " AND email = '". $_POST['ibemail']. "'";
+							}else{
+								$condicao .= " email = '". $_POST['ibemail']. "'";
+								$and = true;
+							}
+						}
+
+					}
+
+				}
+
+
+				$sql = "SELECT * FROM funcionario" . $condicao ;
+				$res = mysqli_query($link,$sql);
+				while ($dados = mysqli_fetch_array($res)){
+					echo "<tr>";
+					echo "<td>".$dados['codigo_func']."</td>";
+					echo "<td>".$dados['nome']."</td>";	
+					echo "<td>".$dados['cpf']."</td>";	
+					echo "<td>".$dados['telefone']."</td>";
+					echo "<td>".$dados['email']."</td>";	
+					if($dados['status']==1){
+						echo "<td><spam>Ativo</spam></td>";
+					}else{
+						echo "<td><spam>Desativado</spam></td>";	
+					}
+					$id = base64_encode($dados['codigo_func']);
+					echo "<td><a href='frmFuncionario.php?tela=editar&id=".$id."' title='Editar Funcionario'> <spam class='glyphicon glyphicon-pencil'> </spam> </a>";
+					echo "<a href='frmFuncionario.php?tela=excluir&id=".$id."' title='Excluir Funcionario'> <spam class='glyphicon glyphicon-remove'> </spam> </a>";
+					echo "</td>";
+					echo "</tr>";
+				}
+				desconectar($link);
+				?>
+
+		</tbody>
+	</table>
+
 
 		
 
 	</div>
 </div>
-
 
 
 </body>

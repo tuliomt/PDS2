@@ -1,13 +1,62 @@
+<?php require_once "funcoes.php";
+
+verificaPermissao();
+
+if(isset($_GET['sair'])) {
+	if($_GET['sair'] == true){
+		session_destroy();
+		redireciona('index.php');
+	}
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Cadastro funcionario</title>
 	
 	<meta charset="UTF8"/>
 	<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
 	
 	<script type="text/javascript" src="../JS/jquery.js"></script>
 	<script src="../JS/bootstrap.js"></script>
+	<script>
+		$(document).ready(function() {
+			if($('form').attr('action') != 'tela=cadastrar') {
+				$.get(`./funcionario.php?id=${$('input[name=icod]').val()}`, function(response) {
+					let data = JSON.parse(response);
+
+					if(data.status == 'success') {
+						let funcionario = data.data[0];
+						
+						$('input[name=inome]').val(funcionario.nome);
+						$('input[name=icpf]').val(funcionario.cpf);
+						$('input[name=itel]').val(funcionario.tel);
+						$('input[name=iemail]').val(funcionario.email);
+						$('input[name=cstatus]').prop('checked', +funcionario.status == 1);
+						$('#senha').remove(); // Eliminando campo senha 
+					}
+				});
+			}
+		});
+
+		$(document).on('submit', 'form', function(event) {
+			event.preventDefault();
+			let formJSON = $(this).serializeArray();
+			
+			$.post(`./funcionario.php?${$(this).attr('action')}`, formJSON, function(response) {
+				let data = JSON.parse(response);
+				
+				if(data.status == 'error') {
+					$('.alert').removeClass('alert-success').addClass('alert-danger')
+					.text(data.mensagem).fadeIn(100).fadeOut(5000);
+				}
+				else {
+					$('.alert').removeClass('alert-danger').addClass('alert-success')
+					.text(data.mensagem).fadeIn(100).fadeOut(5000);
+				}
+			});
+		});
+	</script>
 
 	
 </head>
@@ -43,13 +92,15 @@
 						    </ul>
 						</li>
 
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
-							<li><a href="conFuncionario.php">Consultar</a></li>
-						    </ul>
-						</li>
+						<li class="dropdown active">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionario<b class="caret"></b></a>
+					    <ul class="dropdown-menu">
+						<li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
+						<li><a href="conFuncionario.php">Consultar</a></li>
+
+						<li class="divider"></li>
+					    </ul>
+					</li>
 
 						<li class="dropdown">
 						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
@@ -63,11 +114,7 @@
 						    </ul>
 						</li>
 
-							<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
-						</li>
+							
 						
 				    </ul>
 
@@ -76,7 +123,7 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<form class="form-horizontal" method="" action="">
+			<form class="form-horizontal" method="POST" action="<?php echo implode('&', array_map(function ($key, $value) { return "$key=$value"; }, array_keys($_GET), $_GET)); ?>">
 				<fieldset>
 					<div class="form-group">
 				        <label class="control-label col-xs-2">Nome</label>
