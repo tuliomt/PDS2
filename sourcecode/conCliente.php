@@ -3,7 +3,7 @@
 verificaPermissao();
 
 if(isset($_GET['sair'])) {
-	if($_GET['sair'] == true){
+	if($_GET['sair'] == true){ 
 		session_destroy();
 		redireciona('index.php');
 	}
@@ -20,11 +20,9 @@ if(isset($_GET['sair'])) {
 	<script src="../JS/bootstrap.js"></script>
 </head>
 <body>
-	<div class="navbar navbar-default" role="navigation">
-	    <div class="container">
-			<div class="navbar-collapse collapse">
+	<div class="navbar-collapse collapse">
 
-			    <ul class="nav navbar-nav navbar-left">
+				    <ul class="nav navbar-nav navbar-left">
 						<li class="active"><a href="home.php">Home</a></li>
 						<li class="dropdown ">
 						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
@@ -32,7 +30,7 @@ if(isset($_GET['sair'])) {
 						    </ul>
 						</li>			
 						<li class="dropdown ">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
+						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
 						    <ul class="dropdown-menu">
 
 							<li class="divider"></li>
@@ -55,15 +53,13 @@ if(isset($_GET['sair'])) {
 						    </ul>
 						</li>
 
-						<li class="dropdown active">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionario<b class="caret"></b></a>
-					    <ul class="dropdown-menu">
-						<li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
-						<li><a href="conFuncionario.php">Consultar</a></li>
-
-						<li class="divider"></li>
-					    </ul>
-					</li>
+						<li class="dropdown">
+						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
+						    <ul class="dropdown-menu">
+						    <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
+							<li><a href="conFuncionario.php">Consultar</a></li>
+						    </ul>
+						</li>
 
 						<li class="dropdown">
 						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
@@ -78,52 +74,56 @@ if(isset($_GET['sair'])) {
 						</li>
 
 							
+						</li>
 						
 				    </ul>
-
-			</div><!--/.nav-collapse -->
-	    </div>
-	</div>
+				</div>
+	</div>	
 <div class="container">
 	<div class="row">
-		<div class="panel-group" id="accordion">
-		  	<div class="panel panel-default">
-		        <div class="panel-heading">
-		          <h4 class="panel-title">
-		            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Busca</a>
-		          </h4>
-		        </div>
-		        <div id="collapseOne" class="panel-collapse collapse in">
-		          <div class="panel-body">
-		            
-		            <form class="form-inline" method="POST" action="">
-						<fieldset>
-							<div class="form-group">
-						    	<input type="number" class="form-control" name="ibcpf" placeholder="CPF do Funcionario">
-						    </div>
-						    <div class="form-group">
-						        <input type="text" class="form-control" name="ibnome" placeholder="Nome do Funcionario">
-						    </div>
-						    <div class="form-group">
-						        <input type="text" class="form-control" name="ibemail" placeholder="Email do Funcionario">
-						    </div>
-						    <div class="form-group">
-						            <button type="submit" class="btn btn-primary" name="btnPesq">
-						            	<i class="glyphicon glyphicon-search"> Pesquisar </i>
-						            </button>
-						    </div>
-					    </fieldset>
-					</form>
-		          </div>
-		        </div>
-		  	</div>
-		</div>
+
+	<div class="panel-group" id="accordion">
+      	<div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Busca</a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body">
+                
+                <form class="form-inline" method="POST" action="">
+					<fieldset>
+						<div class="form-group">
+					    	<input type="number" class="form-control" name="ibcpf" placeholder="CPF do Cliente">
+					    </div>
+					    <div class="form-group">
+					        <input type="text" class="form-control" name="ibnome" placeholder="Nome do Cliente">
+					    </div>
+					    <div class="form-group">
+					        <input type="text" class="form-control" name="ibemail" placeholder="Email do Cliente">
+					    </div>
+					    <div class="form-group">
+					            <button type="submit" class="btn btn-primary" name="btnPesq">
+					            	<i class="glyphicon glyphicon-search"> Pesquisar </i>
+					            </button>
+					    </div>
+				    </fieldset>
+				</form>
+              </div>
+            </div>
+      	</div>
+    </div>
+
+
+
 	<table cellpadding="0" cellspacing="0" class="table">
 		<thead>
 			<th>Codigo</th>
 			<th>Nome</th>
 			<th>CPF</th>
-			<th>Telefone</th>
+			<th>Residencial</th>
+			<th>Celular</th>
 			<th>Email</th>
 			<th>Status</th>
 			<th>Ações</th>
@@ -132,10 +132,10 @@ if(isset($_GET['sair'])) {
 				<?php 
 				$link = conectar();
 				$condicao = "";
+				$and = null;
 				if(isset($_POST['btnPesq'])){
 					if($_POST['ibcpf'] != NULL || $_POST['ibnome'] != NULL || $_POST['ibemail'] != NULL){
 						$condicao = " WHERE ";
-						$and = null;
 						if($_POST['ibcpf'] != NULL){
 							$condicao .= " cpf = ". $_POST['ibcpf'];
 							$and = true;
@@ -162,24 +162,26 @@ if(isset($_GET['sair'])) {
 
 				}
 
-
-				$sql = "SELECT * FROM funcionario" . $condicao ;
+				$sql = "SELECT * FROM cliente " . $condicao;
+				
 				$res = mysqli_query($link,$sql);
 				while ($dados = mysqli_fetch_array($res)){
 					echo "<tr>";
-					echo "<td>".$dados['codigo_func']."</td>";
+					echo "<td>".$dados['codigo_cli']."</td>";
 					echo "<td>".$dados['nome']."</td>";	
 					echo "<td>".$dados['cpf']."</td>";	
-					echo "<td>".$dados['telefone']."</td>";
+					echo "<td>".$dados['tel_residencial']."</td>";
+					echo "<td>".$dados['tel_celular']."</td>";
 					echo "<td>".$dados['email']."</td>";	
 					if($dados['status']==1){
 						echo "<td><spam>Ativo</spam></td>";
 					}else{
 						echo "<td><spam>Desativado</spam></td>";	
 					}
-					$id = base64_encode($dados['codigo_func']);
-					echo "<td><a href='frmFuncionario.php?tela=editar&id=".$id."' title='Editar Funcionario'> <spam class='glyphicon glyphicon-pencil'> </spam> </a>";
-					echo "<a href='frmFuncionario.php?tela=excluir&id=".$id."' title='Excluir Funcionario'> <spam class='glyphicon glyphicon-remove'> </spam> </a>";
+					$id = base64_encode($dados['codigo_cli']);
+					echo "<td><a href='frmCliente.php?tela=editar&id=".$id."' title='Editar Cliente'> <spam class='glyphicon glyphicon-pencil'> </spam> </a>";
+					
+					echo "<a href='frmCliente.php?tela=excluir&id=".$id."' title='Excluir Cliente'> <spam class='glyphicon glyphicon-remove'> </spam> </a>";
 					echo "</td>";
 					echo "</tr>";
 				}
@@ -187,6 +189,7 @@ if(isset($_GET['sair'])) {
 				?>
 
 		</tbody>
+
 	</table>
 
 
@@ -194,6 +197,7 @@ if(isset($_GET['sair'])) {
 
 	</div>
 </div>
+
 
 
 </body>

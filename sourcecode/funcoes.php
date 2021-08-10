@@ -65,7 +65,17 @@ function calcularData($datap){
 }
 
 
-
+function calcularStatus($datap){
+	
+	$dias = calcularData($datap);
+	
+	if($dias == 0)
+		return "Ultimo dia";
+	elseif ($dias < 0)
+		return "Atrasado ".($dias*1)." dias";
+	else
+		return "Restam ".$dias." dias";
+}
 
 function verificaPermissao(){
 	if(!isset($_SESSION['idFunc']) || empty($_SESSION['idFunc'])){
@@ -120,4 +130,4 @@ function md5_encrypt($plain_text, $password, $iv_len = 16)
 
 
 
-?>
+?> 

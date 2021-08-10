@@ -61,6 +61,10 @@ if(isset($_GET['sair'])) {
 						<li class="dropdown">
 						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente<b class="caret"></b></a>
 						    <ul class="dropdown-menu">
+							<li><a href="frmCliente.php?tela=cadastrar">Cadastrar</a></li>
+							<li><a href="conCliente.php">Consultar</a></li>
+
+							<li class="divider"></li>
 						    </ul>
 						</li>
 
