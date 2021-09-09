@@ -34,6 +34,8 @@ if(isset($_GET['sair'])) {
 						<li class="dropdown ">
 						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
 						    <ul class="dropdown-menu">
+							<li><a href="frmProduto.php?tela=cadastrar">Cadastrar</a></li>
+							<li><a href="conProduto.php">Consultar</a></li>
 
 							<li class="divider"></li>
 						    </ul>

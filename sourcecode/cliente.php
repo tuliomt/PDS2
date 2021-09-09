@@ -3,10 +3,12 @@
 
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$nome = $_POST['inome'];
+		$ende = $_POST['ende'];
 		$email = $_POST['iemail'];
 		$cpf = $_POST['icpf'];
 		$fone_res = $_POST['ifoneres'];
 		$fone_cel = $_POST['ifonecel'];
+		
 		
 		if(isset($_POST['cstatus'])) {
 			$status = 1;	
@@ -19,7 +21,7 @@
 
 		if($_GET['tela'] == 'cadastrar') {
 			if (!existeEmail($email,"cliente")) {
-				$sql = "INSERT INTO cliente(nome,cpf,email,tel_residencial,tel_celular,status) VALUES('{$nome}',{$cpf},'{$email}',{$fone_res},{$fone_cel},{$status})";
+				$sql = "INSERT INTO cliente(nome,ende,cpf,email,tel_residencial,tel_celular,status) VALUES('{$nome}','{$ende}',{$cpf},'{$email}',{$fone_res},{$fone_cel},{$status})";
 				
 				mysqli_query($link,$sql);
 				if(mysqli_affected_rows($link)==1) {
@@ -46,7 +48,7 @@
 		else if($_GET['tela'] == 'editar') {
 			$id = base64_decode($_POST['icod']);
 
-			$sql = "UPDATE cliente SET nome= '$nome',cpf= '$cpf',email = '$email',tel_residencial ='$fone_res',tel_celular = '$fone_cel',status = $status ";
+			$sql = "UPDATE cliente SET nome= '$nome',ende= '$ende',cpf= '$cpf',email = '$email',tel_residencial ='$fone_res',tel_celular = '$fone_cel' ,status = $status ";
 			$sql .= " WHERE codigo_cli = $id";
 
 			mysqli_query($link,$sql);
@@ -99,6 +101,7 @@
 			while ($dados = mysqli_fetch_array($res)) {
 				$cliente = [
 					'nome' => $dados['nome'],
+					'ende' => $dados['ende'],
 					'email' => $dados['email'],
 					'cpf' => $dados['cpf'],
 					'tel' => $dados['tel_residencial'],

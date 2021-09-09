@@ -30,8 +30,10 @@ if(isset($_GET['sair'])) {
 						    </ul>
 						</li>			
 						<li class="dropdown ">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
+						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
 						    <ul class="dropdown-menu">
+							<li><a href="frmProduto.php?tela=cadastrar">Cadastrar</a></li>
+							<li><a href="conProduto.php">Consultar</a></li>
 
 							<li class="divider"></li>
 						    </ul>
@@ -121,6 +123,7 @@ if(isset($_GET['sair'])) {
 		<thead>
 			<th>Codigo</th>
 			<th>Nome</th>
+			<th>Endereço</th>
 			<th>CPF</th>
 			<th>Residencial</th>
 			<th>Celular</th>
@@ -168,7 +171,8 @@ if(isset($_GET['sair'])) {
 				while ($dados = mysqli_fetch_array($res)){
 					echo "<tr>";
 					echo "<td>".$dados['codigo_cli']."</td>";
-					echo "<td>".$dados['nome']."</td>";	
+					echo "<td>".$dados['nome']."</td>";
+					echo "<td>".$dados['ende']."</td>";	
 					echo "<td>".$dados['cpf']."</td>";	
 					echo "<td>".$dados['tel_residencial']."</td>";
 					echo "<td>".$dados['tel_celular']."</td>";
