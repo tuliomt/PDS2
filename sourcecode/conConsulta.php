@@ -22,84 +22,83 @@ if(isset($_GET['sair'])) {
 </head>
 
 <body>
-  <div class="navbar-collapse collapse">
+<div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="active"><a href="home.php">Home</a></li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmConsulta.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conConsulta.php">Consultar</a></li>
 
-    <ul class="nav navbar-nav navbar-left">
-      <li class="active"><a href="home.php">Home</a></li>
-      <li class="dropdown ">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmConsulta.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="conConsulta.php">Consultar</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veterinário<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmVet.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conVet.php">Consultar</a></li>
 
-          <li class="divider"></li>
-        </ul>
-      </li>
-      <li class="dropdown ">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veterinário<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmVet.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="convet.php">Consultar</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmProduto.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conProduto.php">Consultar</a></li>
 
-          <li class="divider"></li>
-        </ul>
-      </li>
-      <li class="dropdown ">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmProduto.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="conProduto.php">Consultar</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animal<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmAnimal.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conAnimal.php">Consultar</a></li>
 
-          <li class="divider"></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animal<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmAnimal.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="conAnimal.php">Consultar</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
 
-          <li class="divider"></li>
-        </ul>
-      </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmCliente.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conCliente.php">Consultar</a></li>
 
+            <li class="divider"></li>
+          </ul>
+        </li>
 
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmCliente.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="conCliente.php">Consultar</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conFuncionario.php">Consultar</a></li>
+          </ul>
+        </li>
 
-          <li class="divider"></li>
-        </ul>
-      </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmbanhoEtosa.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conbanhoEtosa.php">Consultar</a></li>
+          </ul>
+        </li>
 
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="conFuncionario.php">Consultar</a></li>
-        </ul>
-      </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmVendas.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conVendas.php">Consultar</a></li>
+          </ul>
+        </li>
+        </li>
 
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-        </ul>
-      </li>
-
-
-      </li>
-
-    </ul>
-  </div>
-  </div>
+      </ul>
+    </div>
   <div class="container">
     <div class="row">
       <div class="panel-group" id="accordion">
@@ -117,7 +116,15 @@ if(isset($_GET['sair'])) {
                   <div class="form-group">
                     <input type="number" class="form-control" name="ibcod" placeholder="Codigo da consulta">
                   </div>
-                  
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="ibvet" placeholder="Nome do veterinário">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="ibnome" placeholder="Nome do Animal">
+                  </div>
+                 
+
+
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary" name="btnPesq">
                       <i class="glyphicon glyphicon-search"> Pesquisar </i>
@@ -133,9 +140,9 @@ if(isset($_GET['sair'])) {
       <table cellpadding="0" cellspacing="0" class="table">
         <thead>
 
-          <th>Código</th>
-          <th>Veterinário</th>
-          <th>Animal</th>
+          <th>Código consulta</th>
+          <th>Nome Veterinário</th>
+          <th>Nome Animal</th>
           <th>Horário</th>
           <th>Data</th>
           <th>Descrição</th>
@@ -147,36 +154,52 @@ if(isset($_GET['sair'])) {
 					$link = conectar();
 					$condicao = "";
 					$and = null;
-					if(isset($_POST['btnPesq'])){
-						if($_POST['inomev'] != NULL || $_POST['icod'] != NULL){
-							$condicao = " WHERE ";
-							if($_POST['inomev'] != NULL){
-								$condicao .= " nome LIKE '%". $_POST['inomev'] ."%'";
-								$and = true;
-							}
-							if($_POST['icod'] != NULL){
-								if($and){
-									$condicao .= " AND codigo_con = ". $_POST['icod'] ;
-								}else{
-									$condicao .= " codigo_con = ". $_POST['icod'] ;
-								}
-							}
-						}
-					}
-
-
-
-					$sql = "SELECT * FROM consulta " . $condicao;
 					
-					$res = mysqli_query($link,$sql);
+          if(isset($_POST['btnPesq'])){
+            if($_POST['ibcod'] != NULL || $_POST['ibvet'] != NULL || $_POST['ibnome'] != NULL){
+              $condicao = " WHERE ";
+              $and = null;
+              if($_POST['ibcod'] != NULL){
+                $condicao .= " codigo_con = ". $_POST['ibcod'];
+                $and = true;
+              }
+              if($_POST['ibvet'] != NULL){
+                if($and){
+                  $condicao .= " AND vet.nome = '". $_POST['ibvet']. "'";
+                }else{
+                  $condicao .= " vet.nome = '". $_POST['ibvet']. "'";
+                  $and = true; 
+                } 
+              }
+              if($_POST['ibnome'] != NULL){
+                if($and){
+                  $condicao .= " AND animal.nome = '". $_POST['ibnome']. "'";
+                }else{
+                  $condicao .= " animal.nome = '". $_POST['ibnome']. "'";
+                  $and = true;
+                } 
+              }
+  
+            }
+  
+          }
+
+
+
+					//$sql = "SELECT * FROM consulta" . $condicao;
+          //$sql = "SELECT * FROM consulta.codigo_con, consulta.horario, consulta.data_prevista, consulta.descricao, consulta.status, animal.nome, vet.nome FROM consulta left join animal on consulta.fk_ani = animal.codigo_ani left join vet on consulta.fk_vet = vet.codigo_vet" . $condicao";
+					//$sql = "SELECT consulta.codigo_con, consulta.horario, consulta.data_prevista, consulta.descricao, consulta.status, animal.nome, vet.nome from consulta left join animal on consulta.fk_ani = animal.codigo_ani left join vet on consulta.fk_vet = vet.codigo_vet" . $condicao;
+          $sql = "SELECT consulta.codigo_con, consulta.horario, consulta.data_prevista, consulta.descricao, consulta.status, animal.nome as nome_animal, vet.nome as nome_vet from consulta left join animal on consulta.fk_ani = animal.codigo_ani left join vet on consulta.fk_vet = vet.codigo_vet" . $condicao;
+          $res = mysqli_query($link,$sql);
+         
 					while ($dados = mysqli_fetch_array($res)){
 						echo "<tr>";
-						echo "<td>".$dados['codigo_con']."</td>";
-						echo "<td>".$dados['veterinário']."</td>";	
-						echo "<td>".$dados['Animal']."</td>";	
-						echo "<td>".$dados['Hora']."</td>";	
-            echo "<td>".$dados['Data']."</td>";
-            echo "<td>".$dados['Descrição']."</td>";
+						echo "<td>".$dados['codigo_con']."</td>"; 
+						echo "<td>".$dados['nome_vet']."</td>";	
+						echo "<td>".$dados['nome_animal']."</td>";	
+						echo "<td>".$dados['horario']."</td>";	
+            echo "<td>".$dados['data_prevista']."</td>";
+            echo "<td>".$dados['descricao']."</td>";
 						if($dados['status']==1){
 							echo "<td><spam>Ativo</spam></td>";
 						}else{
@@ -188,7 +211,9 @@ if(isset($_GET['sair'])) {
 						echo "<a href='frmConsulta.php?tela=excluir&id=".$id."' title='Excluir Consulta'> <spam class='glyphicon glyphicon-remove'> </spam> </a>";
 						echo "</td>";
 						echo "</tr>";
+            
 					}
+         
 					desconectar($link);
 					?>
 

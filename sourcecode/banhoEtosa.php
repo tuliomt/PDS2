@@ -3,8 +3,8 @@
 
 	if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$datap = $_POST['idata'];
-		$fk_ani = $_POST['inomea'];
-		$fk_vet = $_POST['inomev'];
+		$fk_ani = $_POST['inomea']; 
+		$fk_func = $_POST['inomev'];
 		$descr = $_POST['txtdesc'];
 		$hora = $_POST['iho'];
 		$data = date("Y-m-d");
@@ -19,19 +19,19 @@
 		$link = conectar();  
 
 		if($_GET['tela'] == 'cadastrar') {
-			$sql = "INSERT INTO consulta (horario,data_prevista,descricao,fk_vet,fk_ani,status) ";
-			$sql .= "VALUES ('$hora', '$datap','$descr', $fk_vet, $fk_ani,$status)";
+			$sql = "INSERT INTO bet (horario,data_prevista,descricao,fk_func,fk_ani,status) ";
+			$sql .= "VALUES ('$hora', '$datap','$descr', $fk_func, $fk_ani,$status)";
 			
 			mysqli_query($link,$sql);
 			if(mysqli_affected_rows($link)==1){
 				echo json_encode([
 					'status' => 'success', 
-					'mensagem' => 'consulta cadastrada!'
+					'mensagem' => 'bet cadastrado!'
 				]);
 			}else{
 				echo json_encode([
 					'status' => 'error', 
-					'mensagem' => 'Erro ao cadastrar consulta!'
+					'mensagem' => 'Erro ao cadastrar bet!'
 				]);
 			}
 		}
@@ -40,38 +40,38 @@
 		else if($_GET['tela'] == 'excluir') {
 			$id = base64_decode($_POST['icod']);
 	
-			$sql = "DELETE FROM consulta WHERE codigo_con = $id";
+			$sql = "DELETE FROM bet WHERE codigo_bet = $id";
 			
 			mysqli_query($link,$sql);
 			if(mysqli_affected_rows($link)==1){
 				echo json_encode([
 					'status' => 'success', 
-					'mensagem' => 'consulta excluída!'
+					'mensagem' => 'bet excluido!'
 				]);
 			}else{
 				echo json_encode([
 					'status' => 'error', 
-					'mensagem' => 'Erro ao excluir consulta!'
+					'mensagem' => 'Erro ao excluir bet!'
 				]);
 			}
 		}
 
 		else if($_GET['tela'] == 'editar') {
 			$id = base64_decode($_POST['icod']);
-			$sql = "UPDATE consulta";
-			$sql .= " SET fk_vet = {$fk_vet}, fk_ani = {$fk_ani}, horario = '{$hora}', data_prevista = '{$datap}', descricao = '{$descr}', status = '{$status}'";
-			$sql .= " WHERE codigo_con = {$id}";
+			$sql = "UPDATE bet";
+			$sql .= " SET fk_func = {$fk_func}, fk_ani = {$fk_ani}, horario = '{$hora}', data_prevista = '{$datap}', descricao = '{$descr}', status = '{$status}'";
+			$sql .= " WHERE codigo_bet = {$id}";
 
 			mysqli_query($link,$sql);
 			if(mysqli_affected_rows($link)==1){
 				echo json_encode([
 					'status' => 'success', 
-					'mensagem' => 'consulta editada!'
+					'mensagem' => 'bet editado!'
 				]);
 			}else{
 				echo json_encode([
 					'status' => 'error', 
-					'mensagem' => 'Erro ao editar consulta!'
+					'mensagem' => 'Erro ao editar bet!'
 				]);
 			}
 		}
@@ -80,16 +80,16 @@
 	}
 	else {	
 		$link = conectar();
-		$sql = "select vet.codigo_vet, vet.nome from vet";
+		$sql = "select funcionario.codigo_func, funcionario.nome from funcionario";
 		$res = mysqli_query($link,$sql);
-		$veterinarios = array();
+		$funcionarios = array();
 		while ($dados = mysqli_fetch_array($res)){
-			$vet = [
-				'nome_vet' => $dados[1],
-				'codigo_vet' => $dados[0],
+			$funcionario = [
+				'nome' => $dados[1],
+				'codigo_func' => $dados[0],
 			];
 
-			array_push($veterinarios, $vet);
+			array_push($funcionarios, $funcionario);
 		}
 
 		$sql = "SELECT animal.codigo_ani, animal.nome, cliente.nome FROM animal left join cliente on animal.codigo_cli = cliente.codigo_cli";
@@ -109,9 +109,9 @@
 
 		if(isset($_GET['id'])) {
 			$id = base64_decode($_GET['id']);
-			$sql = "SELECT * from consulta where codigo_con = {$id} LIMIT 1";
-			$resConsulta = mysqli_query($link, $sql);
-			while ($linhas = mysqli_fetch_array($resConsulta)){
+			$sql = "SELECT * from bet where codigo_bet = {$id} LIMIT 1";
+			$resbet = mysqli_query($link, $sql);
+			while ($linhas = mysqli_fetch_array($resbet)){
 				$data = $linhas;
 			}	
 		}
@@ -119,18 +119,13 @@
 
 		echo json_encode([
 			'status' => 'success', 
-			'mensagem' => 'consultas recuperadas',
+			'mensagem' => 'bet recuperados',
 			'data' => [
-				'veterinarios' => $veterinarios,
+				'funcionarios' => $funcionarios,
 				'animais' => $animais,
-				'consulta' => $data,
+				'bet' => $data,
 			]
 		]);
-
-
-
-
-
 		desconectar($link);
 	}
  ?>

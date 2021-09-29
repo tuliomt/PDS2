@@ -11,125 +11,135 @@ if(isset($_GET['sair'])) {
 ?>
 <!DOCTYPE html>
 <html lang="pt_BR">
+
 <head>
-	<title></title>
-	<meta charset="UTF8"/>
-	<link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
-	
-	<script type="text/javascript" src="../JS/jquery.js"></script>
-	<script src="../JS/bootstrap.js"></script>
+  <title></title>
+  <meta charset="UTF8" />
+  <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
+
+  <script type="text/javascript" src="../JS/jquery.js"></script>
+  <script src="../JS/bootstrap.js"></script>
 </head>
+
 <body>
-	<div class="navbar-collapse collapse">
+  <div class="navbar-collapse collapse">
 
-				    <ul class="nav navbar-nav navbar-left">
-						<li class="active"><a href="home.php">Home</a></li>
-						<li class="dropdown ">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
-						</li>			
-						<li class="dropdown ">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-							<li><a href="frmProduto.php?tela=cadastrar">Cadastrar</a></li>
-							<li><a href="conProduto.php">Consultar</a></li>
+    <ul class="nav navbar-nav navbar-left">
+      <li class="active"><a href="home.php">Home</a></li>
+      <li class="dropdown ">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+				<li><a href="frmconsulta.php?tela=cadastrar">Cadastrar</a></li>
+          <li><a href="conconsulta.php">Consultar</a></li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="frmProduto.php?tela=cadastrar">Cadastrar</a></li>
+          <li><a href="conProduto.php">Consultar</a></li>
 
-							<li class="divider"></li>
-						    </ul>
-						</li>
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animal<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-							<li><a href="frmAnimal.php?tela=cadastrar">Cadastrar</a></li>
-							<li><a href="conAnimal.php">Consultar</a></li>
+          <li class="divider"></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animal<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="frmAnimal.php?tela=cadastrar">Cadastrar</a></li>
+          <li><a href="conAnimal.php">Consultar</a></li>
 
-							<li class="divider"></li>
-						    </ul>
-						</li>
+          <li class="divider"></li>
+        </ul>
+      </li>
 
 
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-							<li><a href="frmCliente.php?tela=cadastrar">Cadastrar</a></li>
-							<li><a href="conCliente.php">Consultar</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="frmCliente.php?tela=cadastrar">Cadastrar</a></li>
+          <li><a href="conCliente.php">Consultar</a></li>
 
-							<li class="divider"></li>
-						    </ul>
-						</li>
+          <li class="divider"></li>
+        </ul>
+      </li>
 
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
-							<li><a href="conFuncionario.php">Consultar</a></li>
-						    </ul>
-						</li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
+          <li><a href="conFuncionario.php">Consultar</a></li>
+        </ul>
+      </li>
 
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
-						</li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+				<li><a href="frmbanhoEtosa.php?tela=cadastrar">Cadastrar</a></li>
+          <li><a href="conbanhoEtosa.php">Consultar</a></li>
+        </ul>
+      </li>
 
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
-						</li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+				<li><a href="frmVendas.php?tela=cadastrar">Cadastrar</a></li>
+          <li><a href="conVendas.php">Consultar</a></li>
+        </ul>
+      </li>
 
-							
-						</li>
-						
-				    </ul>
-				</div>
-	</div>	
-<div class="container">
-	<div class="row">
-		<div class="panel-group" id="accordion">
-	      	<div class="panel panel-default">
-	            <div class="panel-heading">
-	              <h4 class="panel-title">
-	                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Busca</a>
-	              </h4>
-	            </div>
-	            <div id="collapseOne" class="panel-collapse collapse in">
-	              <div class="panel-body">
-	                
-	                <form class="form-inline" method="POST" action="">
-						<fieldset>
-							<div class="form-group">
-						    	<input type="number" class="form-control" name="ibcod" placeholder="Codigo do Animal">
-						    </div>
-						    <div class="form-group">
-						        <input type="text" class="form-control" name="ibnome" placeholder="Nome do Animal">
-						    </div>
-						    <div class="form-group">
-						            <button type="submit" class="btn btn-primary" name="btnPesq">
-						            	<i class="glyphicon glyphicon-search"> Pesquisar </i>
-						            </button>
-						    </div>
-					    </fieldset>
-					</form>
-	              </div>
-	            </div>
-	      	</div>
-	    </div>
 
-		<table cellpadding="0" cellspacing="0" class="table">
-			<thead>
-				<th>Codigo</th>
-				<th>Nome</th>
-				<th>Idade</th>
-				<th>Raça</th>
-				<th>Categoria</th>
-				<th>Preço</th>
-				<th>Status</th>
-				<th>Ações</th>
-			</thead>
-			<tbody>
-					<?php 
+      </li>
+
+    </ul>
+  </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Busca</a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+
+              <form class="form-inline" method="POST" action="">
+                <fieldset>
+                  <div class="form-group">
+                    <input type="number" class="form-control" name="ibcod" placeholder="Codigo do Animal">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="ibnome" placeholder="Nome do Animal">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary" name="btnPesq">
+                      <i class="glyphicon glyphicon-search"> Pesquisar </i>
+                    </button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table cellpadding="0" cellspacing="0" class="table">
+        <thead>
+          <th>Codigo</th>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Raça</th>
+          <th>Categoria</th>
+          <th>Preço</th>
+          <th>Proprietário</th>
+          <th>Status</th>
+
+          <th>Ações</th>
+        </thead>
+        <tbody>
+          <?php 
 					$link = conectar();
 					$condicao = "";
 					$and = null;
@@ -152,8 +162,9 @@ if(isset($_GET['sair'])) {
 
 
 
-					$sql = "SELECT * FROM animal " . $condicao;
-					
+					//$sql = "SELECT * FROM animal " . $condicao;
+					$sql = "SELECT animal.codigo_ani, animal.nome, animal.idade, animal.raca, animal.categoria, animal.preco, animal.status, cliente.nome as nome_cli from animal left join cliente on animal.codigo_cli = cliente.codigo_cli " . $condicao;
+         
 					$res = mysqli_query($link,$sql);
 					while ($dados = mysqli_fetch_array($res)){
 						echo "<tr>";
@@ -163,6 +174,7 @@ if(isset($_GET['sair'])) {
 						echo "<td>".$dados['raca']."</td>";	
 						echo "<td>".$dados['categoria']."</td>";
 						echo "<td>".$dados['preco']."</td>";
+						echo "<td>".$dados['nome_cli']."</td>";
 						if($dados['status']==1){
 							echo "<td><spam>Ativo</spam></td>";
 						}else{
@@ -178,13 +190,14 @@ if(isset($_GET['sair'])) {
 					desconectar($link);
 					?>
 
-			</tbody>
+        </tbody>
 
-		</table>
-	</div>
-</div>
+      </table>
+    </div>
+  </div>
 
 
 
 </body>
+
 </html>

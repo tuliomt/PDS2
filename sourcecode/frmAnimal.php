@@ -25,7 +25,6 @@ if(isset($_GET['sair'])) {
     if ($('form').attr('action') != 'tela=cadastrar') { //
       $.get(`./animal.php?id=${$('input[name=icod]').val()}`, function(response) {
         let data = JSON.parse(response);
-
         if (data.status == 'success') {
           let animal = data.data[0];
 
@@ -35,11 +34,38 @@ if(isset($_GET['sair'])) {
 
           $('textarea[name=txtcategoria]').text(animal.categoria);
           $('input[name=ipreco]').val(animal.preco);
+          let clientes = data.clientes;
+
+          clientes.forEach(cliente => {
+            $('select[name=inomep]').append(
+              `<option value='${cliente.codigo_cli}'> ${cliente.nome}</option>`);
+          });
+
+
+
+          $('select[name=inomep]').val(animal.codigo_cli);
+
           $('input[name=cstatus]').prop('checked', +animal.status == 1);
         }
       });
+    } else {
+      $.get(`./animal.php`, function(response) {
+        const data = JSON.parse(response);
+        if (data.status == 'success') {
+          let clientes = data.clientes;
+
+          clientes.forEach(cliente => {
+            $('select[name=inomep]').append(
+              `<option value='${cliente.codigo_cli}'> ${cliente.nome}</option>`);
+          });
+
+        }
+
+      });
     }
   });
+
+
 
   $(document).on('submit', 'form', function(event) {
     event.preventDefault(); //Parando o submit para manusear os dados e fazer a requisição por ajax
@@ -61,71 +87,85 @@ if(isset($_GET['sair'])) {
 </head>
 
 <body>
-  <div class="navbar-collapse collapse">
+<div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="active"><a href="home.php">Home</a></li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmConsulta.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conConsulta.php">Consultar</a></li>
 
-    <ul class="nav navbar-nav navbar-left">
-      <li class="active"><a href="home.php">Home</a></li>
-      <li class="dropdown ">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-        </ul>
-      </li>
-      <li class="dropdown ">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmProduto.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="conProduto.php">Consultar</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veterinário<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmVet.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conVet.php">Consultar</a></li>
 
-          <li class="divider"></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animal<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmAnimal.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="conAnimal.php">Consultar</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmProduto.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conProduto.php">Consultar</a></li>
 
-          <li class="divider"></li>
-        </ul>
-      </li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animal<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmAnimal.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conAnimal.php">Consultar</a></li>
+
+            <li class="divider"></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmCliente.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conCliente.php">Consultar</a></li>
+
+            <li class="divider"></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conFuncionario.php">Consultar</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmbanhoEtosa.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conbanhoEtosa.php">Consultar</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmVendas.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conVendas.php">Consultar</a></li>
+          </ul>
+        </li>
+        </li>
+
+      </ul>
+    </div>
 
 
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmCliente.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="conCliente.php">Consultar</a></li>
-
-          <li class="divider"></li>
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
-          <li><a href="conFuncionario.php">Consultar</a></li>
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-        </ul>
-      </li>
-
-
-      </li>
-
-    </ul>
-  </div>
-  </div>
   <div class="container">
     <div class="row">
       <form class="form-horizontal" method="POST"
@@ -164,6 +204,13 @@ if(isset($_GET['sair'])) {
             <label class="control-label col-xs-2">Preço</label>
             <div class="col-xs-5">
               <input type="text" class="form-control" required name="ipreco" placeholder="Preço" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-2">Proprietário</label>
+            <div class="col-xs-5">
+              <select class="form-control" required name="inomep">
+              </select>
             </div>
           </div>
           <div class="form-group">

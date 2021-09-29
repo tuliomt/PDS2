@@ -7,7 +7,7 @@
 		$idade = $_POST['idade']; 
 		$categoria = $_POST['txtcategoria'];
 		$preco = $_POST['ipreco'];
-		
+		$codigo_cli = $_POST['inomep'];
 
 		if(isset($_POST['cstatus'])) {
 			$status = 1;	
@@ -19,7 +19,7 @@
 		$link = conectar();
 
 		if($_GET['tela'] == 'cadastrar') {
-			$sql = "INSERT INTO animal(nome,raca,idade,categoria,preco,status) VALUES ('{$nome}','{$raca}','{$idade}','{$categoria}','{$preco}', {$status})";
+			$sql = "INSERT INTO animal(nome,raca,idade,categoria,preco,status,codigo_cli) VALUES ('{$nome}','{$raca}','{$idade}','{$categoria}','{$preco}', {$status},{$codigo_cli})";
 
 			mysqli_query($link,$sql);
 			if(mysqli_affected_rows($link)==1) {
@@ -40,7 +40,7 @@
 		else if($_GET['tela'] == 'editar') {
 			$id =  base64_decode($_GET['id']);
 
-			$sql = "UPDATE animal SET nome = '$nome', raca = '$raca', idade = '$idade', categoria = '$categoria', preco = '$preco', status = $status";
+			$sql = "UPDATE animal SET nome = '{$nome}', raca = '{$raca}', idade = '{$idade}', categoria = '{$categoria}', preco = '{$preco}', status = {$status}, codigo_cli = {$codigo_cli}";
 			$sql .= " WHERE codigo_ani = $id";
 
 			mysqli_query($link,$sql);
@@ -85,6 +85,19 @@
 		desconectar($link);
 	}
 	else {
+
+		$link = conectar();
+		$sql = "select nome, codigo_cli from cliente";
+		$resClientes = mysqli_query($link, $sql);
+		$clientes = array();
+		while($cliente = mysqli_fetch_array($resClientes)) {
+			$cliente = [
+				'nome' => $cliente['nome'],
+				'codigo_cli' => $cliente['codigo_cli'],
+			];
+			array_push($clientes, $cliente);
+		}
+
 		if(isset($_GET['id'])) {
 			$id = base64_decode($_GET['id']);
 
@@ -102,7 +115,8 @@
 					'idade' => $dados['idade'],
 					'categoria' => $dados['categoria'],
 					'preco' => $dados['preco'],
-					'status' => $dados['status']
+					'status' => $dados['status'],
+					'codigo_cli' => $dados['codigo_cli']
 				];
 
 				array_push($animais, $animal);
@@ -111,10 +125,17 @@
 			echo json_encode([
 				'status' => 'success', 
 				'mensagem' => 'Animais recuperados',
-				'data' => $animais
+				'data' => $animais,
+				'clientes' => $clientes
 			]);
 
 			desconectar($link);
+		}		else {
+			echo json_encode([
+				'status' => 'success',
+				'clientes' => $clientes
+			]);
 		}
 	}
+
  ?>

@@ -61,66 +61,83 @@ if(isset($_GET['sair'])) {
 	
 </head>
 <body>
-	<div class="navbar navbar-default" role="navigation">
-	    <div class="container">
-			<div class="navbar-collapse collapse">
+<div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="active"><a href="home.php">Home</a></li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmConsulta.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conConsulta.php">Consultar</a></li>
 
-			    <ul class="nav navbar-nav navbar-left">
-						<li class="active"><a href="home.php">Home</a></li>
-						<li class="dropdown ">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulta<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
-						</li>			
-						<li class="dropdown ">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veterinário<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmVet.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conVet.php">Consultar</a></li>
 
-							<li class="divider"></li>
-						    </ul>
-						</li>
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animal<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-							<li class="divider"></li>
-						    </ul>
-						</li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown ">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produto<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmProduto.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conProduto.php">Consultar</a></li>
 
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
-						</li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Animal<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmAnimal.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conAnimal.php">Consultar</a></li>
 
-						<li class="dropdown active">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionario<b class="caret"></b></a>
-					    <ul class="dropdown-menu">
-						<li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
-						<li><a href="conFuncionario.php">Consultar</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
 
-						<li class="divider"></li>
-					    </ul>
-					</li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cliente<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmCliente.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conCliente.php">Consultar</a></li>
 
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
-						</li>
+            <li class="divider"></li>
+          </ul>
+        </li>
 
-						<li class="dropdown">
-						    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<b class="caret"></b></a>
-						    <ul class="dropdown-menu">
-						    </ul>
-						</li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionário<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmFuncionario.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conFuncionario.php">Consultar</a></li>
+          </ul>
+        </li>
 
-							
-						
-				    </ul>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmbanhoEtosa.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conbanhoEtosa.php">Consultar</a></li>
+          </ul>
+        </li>
 
-			</div><!--/.nav-collapse -->
-	    </div>
-	</div>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="frmVendas.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conVendas.php">Consultar</a></li>
+          </ul>
+        </li>
+        </li>
+
+      </ul>
+    </div>
 	<div class="container">
 		<div class="row">
 			<form class="form-horizontal" method="POST" action="<?php echo implode('&', array_map(function ($key, $value) { return "$key=$value"; }, array_keys($_GET), $_GET)); ?>">

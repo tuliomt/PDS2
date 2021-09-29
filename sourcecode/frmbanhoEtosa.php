@@ -15,7 +15,7 @@ if(isset($_GET['sair'])) {
 <head>
   <title>Cadastro Consulta</title>
 
-  <meta charset="UTF8" />
+  <meta charset="UTF8" /> 
   <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
 
   <script type="text/javascript" src="../JS/jquery.js"></script>
@@ -23,17 +23,17 @@ if(isset($_GET['sair'])) {
   <script>
   $(document).ready(function() {
     if ($('form').attr('action') != 'tela=cadastrar') {
-      $.get(`./consulta.php?id=${$('input[name=icod]').val()}`, function(response) {
+      $.get(`./banhoEtosa.php?id=${$('input[name=icod]').val()}`, function(response) {
         let res = JSON.parse(response);
 
         if (res.status == 'success') {
-          const consulta = res.data.consulta;
-          const veterinarios = res.data.veterinarios;
+          const bet = res.data.bet;
+          const funcionarios = res.data.funcionarios;
           const animais = res.data.animais;
 
-          veterinarios.forEach(vet => {
+          funcionarios.forEach(funcionario => {
             $('select[name=inomev]').append(`
-              <option value="${vet.codigo_vet}">${vet.nome_vet}</option>
+              <option value="${funcionario.codigo_func}">${funcionario.nome}</option>
             `);
           });
 
@@ -44,19 +44,19 @@ if(isset($_GET['sair'])) {
           })
 
 
-         $('select[name=inomev]').val(consulta.fk_vet);
-          $('select[name=inomea]').val(consulta.fk_ani);
-          $('input[name=iho]').val(consulta.horario);
-          $('input[name=idata]').val(consulta.data_prevista);
-          $('textarea[name=txtdesc]').val(consulta.descricao);
-          $('input[name=cstatus]').prop('checked', + consulta.status == 1);
+         $('select[name=inomev]').val(bet.fk_func);
+          $('select[name=inomea]').val(bet.fk_ani);
+          $('input[name=iho]').val(bet.horario);
+          $('input[name=idata]').val(bet.data_prevista);
+          $('textarea[name=txtdesc]').val(bet.descricao);
+          $('input[name=cstatus]').prop('checked', + bet.status == 1);
         }
       });
     } else {
-      $.get(`./consulta.php`, function(response) {
+      $.get(`./banhoEtosa.php`, function(response) {
         let data = JSON.parse(response);
         if (data.status == 'success') {
-          let veterinarios = data.data.veterinarios;
+          let funcionarios = data.data.funcionarios;
           let animais = data.data.animais;
 
           animais.forEach(animal => {
@@ -64,10 +64,10 @@ if(isset($_GET['sair'])) {
               `<option value='${animal.codigo_ani}'> ${animal.nome} - ${animal.cliente} </option>`)
           })
 
-          veterinarios.forEach(veterinario => {
+          funcionarios.forEach(funcionario => {
 
             $('select[name=inomev]').append(
-              `<option value='${veterinario.codigo_vet}'> ${veterinario.nome_vet}</option>`);
+              `<option value='${funcionario.codigo_func}'> ${funcionario.nome}</option>`);
           });
         }
       });
@@ -78,7 +78,7 @@ if(isset($_GET['sair'])) {
     event.preventDefault();
     let formJSON = $(this).serializeArray();
 
-    $.post(`./consulta.php?${$(this).attr('action')}`, formJSON, function(response) {
+    $.post(`./banhoEtosa.php?${$(this).attr('action')}`, formJSON, function(response) {
       let data = JSON.parse(response);
 
       if (data.status == 'error') {
@@ -180,7 +180,7 @@ if(isset($_GET['sair'])) {
         action="<?php echo implode('&', array_map(function ($key, $value) { return "$key=$value"; }, array_keys($_GET), $_GET)); ?>">
         <fieldset>
           <div class="form-group">
-            <label class="control-label col-xs-2">Veterinário</label>
+            <label class="control-label col-xs-2">Funcionário</label>
             <div class="col-xs-5">
               <select class="form-control" required name="inomev">
                 <option></option>
@@ -209,9 +209,9 @@ if(isset($_GET['sair'])) {
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-xs-2">Descrição</label>
+            <label class="control-label col-xs-2">Descrição do serviço</label>
             <div class="col-xs-5">
-              <textarea class="form-control" name="txtdesc" placeholder="Descricao da consulta"></textarea>
+              <textarea class="form-control" name="txtdesc" placeholder="Descricao detalhada do serviço"></textarea>
             </div>
           </div>
           <div class="form-group">

@@ -97,16 +97,18 @@ if(isset($_GET['sair'])) {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banho e Tosa<b class="caret"></b></a>
           <ul class="dropdown-menu">
+            <li><a href="frmbanhoEtosa.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conbanhoEtosa.php">Consultar</a></li>
           </ul>
         </li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas<b class="caret"></b></a>
           <ul class="dropdown-menu">
+            <li><a href="frmVendas.php?tela=cadastrar">Cadastrar</a></li>
+            <li><a href="conVendas.php">Consultar</a></li>
           </ul>
         </li>
-
-
         </li>
 
       </ul>
