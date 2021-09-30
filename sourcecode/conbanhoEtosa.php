@@ -183,8 +183,7 @@ if(isset($_GET['sair'])) {
             }
   
           }
-			    //$sql = "SELECT banhoEtosa.codigo_bet, banhoEtosa.horario, banhoEtosa.data_prevista, banhoEtosa.descricao, banhoEtosa.status, animal.nome as nome_animal, funcionario.nome as nome_funcionario from banhoEtosa left join animal on banhoEtosa.fk_ani = animal.codigo_ani left join funcionario on banhoEtosa.fk_funcionario = funcionario.codigo_func" . $condicao;
-          $sql = "SELECT bet.codigo_bet, bet.horario, bet.data_prevista, bet.descricao, bet.status, animal.nome as nome_animal, funcionario.nome as nome_funcionario from bet left join animal on bet.fk_ani = animal.codigo_ani left join funcionario on bet.fk_func = funcionario.codigo_func" . $condicao;
+			    $sql = "SELECT bet.codigo_bet, bet.horario, bet.data_prevista, bet.descricao, bet.status, animal.nome as nome_animal, funcionario.nome as nome_funcionario from bet left join animal on bet.fk_ani = animal.codigo_ani left join funcionario on bet.fk_func = funcionario.codigo_func" . $condicao;
           $res = mysqli_query($link,$sql); 
          
 					while ($dados = mysqli_fetch_array($res)){
