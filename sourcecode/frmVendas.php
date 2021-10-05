@@ -16,9 +16,11 @@ if(isset($_GET['sair'])) {
   <title></title>
   <meta charset="UTF8" />
   <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
+  <link rel="stylesheet" href="../JS/chosen.min.css">
 
   <script type="text/javascript" src="../JS/jquery.js"></script>
   <script src="../JS/bootstrap.js"></script>
+  <script src="../JS/chosen.jquery.min.js"></script>
 
   <script>
   $(document).ready(function() {
@@ -27,7 +29,6 @@ if(isset($_GET['sair'])) {
         let res = JSON.parse(response);
 
         if (res.status == 'success') {
-          const consulta = res.data.consulta;
           const clientes = res.data.clientes;
           const funcionarios = res.data.funcionarios;
 
@@ -58,6 +59,7 @@ if(isset($_GET['sair'])) {
         if (data.status == 'success') {
           let clientes = data.data.clientes;
           let funcionarios = data.data.funcionarios;
+          let produtos = data.data.produtos;
 
           funcionarios.forEach(funcionario => {
             $('select[name=inomef]').append(
@@ -65,10 +67,16 @@ if(isset($_GET['sair'])) {
           })
 
           clientes.forEach(cliente => {
-
             $('select[name=inomec]').append(
               `<option value='${cliente.codigo_cli}'> ${cliente.nome_cli}</option>`);
           });
+
+          produtos.forEach(produto => {
+            $('#select-produtos').append(
+              `<option value="${produto.codigo_prod}">${produto.nome}</option>`
+            );
+          });
+          $('#select-produtos').chosen({no_results_text: "Não encontrei resultados."})
         }
       });
     }
@@ -77,17 +85,29 @@ if(isset($_GET['sair'])) {
   $(document).on('submit', 'form', function(event) {
     event.preventDefault();
     let formJSON = $(this).serializeArray();
+    
+    console.log(formJSON);
 
-    $.post(`./vendas.php?${$(this).attr('action')}`, formJSON, function(response) {
-      let data = JSON.parse(response);
+    const produtos = formJSON.filter(item => item.name === 'inomep').map(item => item.value);
 
-      if (data.status == 'error') {
-        $('.alert').removeClass('alert-success').addClass('alert-danger')
-          .text(data.mensagem).fadeIn(100).fadeOut(5000);
-      } else {
-        $('.alert').removeClass('alert-danger').addClass('alert-success')
-          .text(data.mensagem).fadeIn(100).fadeOut(5000);
-      }
+    console.log(produtos);
+
+    const payload = [
+      ...formJSON.filter(item => item.name !== 'inomep'),
+      { name: 'inomep', value: produtos }
+    ]
+
+    $.post(`./vendas.php?${$(this).attr('action')}`, payload, function(response) {
+      console.log(response);
+      // let data = JSON.parse(response);
+
+      // if (data.status == 'error') {
+      //   $('.alert').removeClass('alert-success').addClass('alert-danger')
+      //     .text(data.mensagem).fadeIn(100).fadeOut(5000);
+      // } else {
+      //   $('.alert').removeClass('alert-danger').addClass('alert-success')
+      //     .text(data.mensagem).fadeIn(100).fadeOut(5000);
+      // }
     });
   });
   </script>
@@ -196,14 +216,16 @@ if(isset($_GET['sair'])) {
               </select>
             </div>
           </div>
-          
+
           <div class="form-group">
-            <div class="col-xs-offset-2 col-xs-5">
-              <div class="checkbox">
-                <label><input type="checkbox" name="cstatus">Ativar</label>
-              </div>
+            <label class="control-label col-xs-2">Produtos</label>
+            <div class="col-xs-5">
+              <select class="form-control chzn-select" multiple="true" id="select-produtos" required name="inomep">
+                <option></option>
+              </select>
             </div>
           </div>
+
           <div class="form-group">
             <div class="col-xs-offset-2 col-xs-10">
               <button type="submit" class="btn btn-primary" name="btnCad"><?php echo ucfirst($_GET['tela']); ?></button>

@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/harvesthq/chosen/releases/tag/v1.8.7
+HostUrl=https://github-releases.githubusercontent.com/1631024/bb32e912-6b2a-11e8-8205-d08efa2da0cb?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20211005%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211005T192129Z&X-Amz-Expires=300&X-Amz-Signature=c7a452b932f748bf3262ab96e5136336d9b4a82f53f9fd19fc7b9959a12ce530&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=1631024&response-content-disposition=attachment%3B%20filename%3Dchosen_v1.8.7.zip&response-content-type=application%2Foctet-stream
