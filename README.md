@@ -1,6 +1,5 @@
 ### Repositório usado para armazenar códigos e tarefas de PDS2. :computer:
-#### Membros:
-##### Franciele Cristina
+#### Membro:
 ##### Tulio Araujo 
 
 # Pet Shop :star: :star: :star: :star: :star:
