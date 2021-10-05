@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Set-2021 às 19:31
+-- Generation Time: 05-Out-2021 às 20:18
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -184,6 +184,26 @@ INSERT INTO `produto` (`codigo_prod`, `nome`, `descr`, `preco`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `vendas`
+--
+
+CREATE TABLE `vendas` (
+  `codigo_vendas` int(11) NOT NULL,
+  `fk_func` int(11) NOT NULL,
+  `fk_cli` int(11) NOT NULL,
+  `status` varchar(250) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `vendas`
+--
+
+INSERT INTO `vendas` (`codigo_vendas`, `fk_func`, `fk_cli`, `status`) VALUES
+(10, 16, 12, '1');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `vet`
 --
 
@@ -257,6 +277,15 @@ ALTER TABLE `produto`
   ADD PRIMARY KEY (`codigo_prod`);
 
 --
+-- Indexes for table `vendas`
+--
+ALTER TABLE `vendas`
+  ADD PRIMARY KEY (`fk_func`,`fk_cli`),
+  ADD UNIQUE KEY `codigo_vendas` (`codigo_vendas`),
+  ADD KEY `fk_func` (`fk_func`),
+  ADD KEY `fk_ani` (`fk_cli`);
+
+--
 -- Indexes for table `vet`
 --
 ALTER TABLE `vet`
@@ -302,6 +331,12 @@ ALTER TABLE `funcionario`
 --
 ALTER TABLE `produto`
   MODIFY `codigo_prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `vendas`
+--
+ALTER TABLE `vendas`
+  MODIFY `codigo_vendas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `vet`
