@@ -348,3 +348,15 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `venda_produto` (
+  `codigo_venda` int(11),
+  `codigo_prod` int(11),
+  primary key(codigo_venda, codigo_prod)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+alter table vendas add column data date;
+alter table vendas add column valor_total float;
+
+alter table produto drop column preco;
+alter table produto add column preco float;
