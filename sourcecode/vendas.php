@@ -50,20 +50,16 @@
 
   $codigo_produtos = explode(',', $fk_prod);
 
-  echo json_encode([
-    'cod' => $codigo_produtos
-  ]);
-
   foreach($codigo_produtos as $cod) {
     $sql = "INSERT INTO venda_produto (codigo_venda, codigo_prod) VALUES ($id, $cod)";
     mysqli_query($link, $sql);
   }
 
-  // $sql = "SELECT sum(produto.preco) as valor_total from produto where produto.codigo_prod in ($fk_prod)";
-  // $resValor = mysqli_query($link, $sql);
-  // $valor = mysqli_fetch_array($resValor);
+  $sql = "SELECT sum(produto.preco) as valor_total from produto where produto.codigo_prod in ($fk_prod)";
+  $resValor = mysqli_query($link, $sql);
+  $valor = mysqli_fetch_array($resValor);
 
-  $sql = "UPDATE vendas SET fk_cli = {$fk_cli}, fk_func = {$fk_func}";
+  $sql = "UPDATE vendas SET fk_cli = {$fk_cli}, fk_func = {$fk_func}, valor_total = {$valor[0]}";
   $sql .= " WHERE codigo_vendas = $id";
 
   mysqli_query($link,$sql);

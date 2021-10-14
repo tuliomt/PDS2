@@ -16,13 +16,14 @@ if(isset($_GET['sair'])) {
   <title></title>
   <meta charset="UTF8" />
   <link rel="stylesheet" type="text/css" href="../CSS/bootstrap.css">
-  <link rel="stylesheet" href="../JS/chosen.min.css">
+  <link rel="stylesheet" href="../JS/multiselect/jquery.multiselect.css">
 
   <script type="text/javascript" src="../JS/jquery.js"></script>
   <script src="../JS/bootstrap.js"></script>
-  <script src="../JS/chosen.jquery.min.js"></script>
+  <script src="../JS/multiselect/jquery.multiselect.js"></script>
 
   <script>
+  let selectProdutos = [];
   $(document).ready(function() {
     if ($('form').attr('action') != 'tela=cadastrar') {
       $.get(`./vendas.php?id=${$('input[name=icod]').val()}`, function(response) {
@@ -42,16 +43,31 @@ if(isset($_GET['sair'])) {
             `);
           });
 
-          produtos.forEach(produto => {
-            $('#select-produtos').append(
-              `<option value="${produto.codigo_prod}">${produto.nome} $${produto.preco}</option>`
-            );
-          });
+          selectProdutos = vendaProdutos.map(prod => prod.codigo_prod);
 
-          $('#select-produtos').chosen({
-            no_results_text: "Não encontrei resultados."
-          }).val(vendaProdutos.map(produto => produto.codigo_prod));
-          $("#select-produtos").trigger("chosen:updated");
+          $('#select-produtos').multiselect({
+            texts: {
+              placeholder: 'Selecione uma opção',
+              selectedOptions: ' selecionados'
+            },
+            onOptionClick: (element, option) => {
+              const optionIndex = selectProdutos.findIndex(prod => prod === option.value)
+              if(optionIndex === -1) {
+                selectProdutos.push(option.value)
+              } else {
+                selectProdutos.splice(optionIndex, 1);
+              }
+              $('#select-produtos').val(selectProdutos);
+            }
+          })
+
+          $('#select-produtos').multiselect('loadOptions', produtos.map(produto => ({
+            name: `${produto.nome} ${produto.preco}`,
+            value: produto.codigo_prod,
+            checked: vendaProdutos.findIndex(prod => prod.codigo_prod === produto.codigo_prod) !== -1,
+          })));
+
+          $('#select-produtos').multiselect('reload');
 
           $('select[name=inomec]').val(vendas.fk_cli);
           $('select[name=inomef]').val(vendas.fk_func);  
@@ -77,15 +93,20 @@ if(isset($_GET['sair'])) {
               `<option value='${cliente.codigo_cli}'> ${cliente.nome_cli}</option>`);
           });
 
-          produtos.forEach(produto => {
-            $('#select-produtos').append(
-              `<option value="${produto.codigo_prod}">${produto.nome} $${produto.preco}</option>`
-            );
-          });
+          $('#select-produtos').multiselect({
+            texts: {
+              placeholder: 'Selecione uma opção',
+              selectedOptions: ' selecionados'
+            },
 
-          $('#select-produtos').chosen({
-            no_results_text: "Não encontrei resultados."
-          });
+          })
+          
+          $('#select-produtos').multiselect('loadOptions', produtos.map(produto => ({
+            name: `${produto.nome} ${produto.preco}`,
+            value: produto.codigo_prod,
+            checked: false,
+          })));
+
         }
       });
     }
@@ -95,9 +116,7 @@ if(isset($_GET['sair'])) {
     event.preventDefault();
     let formJSON = $(this).serializeArray();
     const produtos = formJSON.filter(item => item.name === 'inomep').map(item => item.value);
-    console.log($("#select-produtos").chosen().val());
-
-    console.log(formJSON);
+    console.log($("#select-produtos").val());
 
     const payload = [
       ...formJSON.filter(item => item.name !== 'inomep'),
@@ -229,7 +248,7 @@ if(isset($_GET['sair'])) {
           <div class="form-group">
             <label class="control-label col-xs-2">Produtos</label>
             <div class="col-xs-5">
-              <select class="form-control chzn-select" multiple="true" id="select-produtos" required name="inomep">
+              <select class="form-control chzn-select" multiple="true" id="select-produtos" name="inomep">
                 <option></option>
               </select>
             </div>
