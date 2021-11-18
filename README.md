@@ -2,6 +2,8 @@
 #### Membro:
 ##### Tulio Araujo 
 
+### Link para testes: http://petshopcincoestrelas.atwebpages.com/sourcecode/index.php Usuário para testes: teste@teste senha: 123 
+
 # Pet Shop :star: :star: :star: :star: :star:
 #### Sistema com interface web, visando gerenciamento para uma clínica veterinária utilizando banco de dados, com objetivo de auxiliar no controle de consultas, banho, tosa e seus produtos junto com os detalhes de vendas de sua loja.
 Apelidado como cinco estrelas.
@@ -21,4 +23,5 @@ Apelidado como cinco estrelas.
 * MYSQL
 * JAVASCRIPT
 * BOOTSTRAP
+
 
