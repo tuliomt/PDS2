@@ -1,4 +1,4 @@
-### Repositório usado para armazenar códigos e tarefas de PDS2. :computer:
+### Repositório usado para armazenar códigos e tarefas da disciplina Projeto e Desenvolvimento de Sistemas de Informação 2 :computer:
 #### Membro:
 ##### Tulio Araujo 
 
